@@ -2,74 +2,20 @@
 <html>
 <head>
 	<title>Secure File</title>
-	<script type="text/javascript" src="sjcl.js"></script>
-	<style type="text/css">
-		.btn{
-			background-color: #4CAF50;
-		    border: none;
-		    color: white;
-		    padding: 15px 32px;
-		    text-align: center;
-		    text-decoration: none;
-		    
-		    font-size: 16px;
-		    margin: 4px 2px;
-		    cursor: pointer;	
-		}
-		#file-upload{
-			display: none;
-		}
-		.custom-upload{
-			display: inline-block;
-			cursor: pointer;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="my.css">
 </head>
 <body>
-
-	<label class="custom-upload" for="file-upload">Choose a file</label>
-	<input type="file" id="file-upload"/><div></div>
-	<div class="btn" onclick="encryptFile();">Encrypt</div>
-	<div class="btn" onclick="decryptFile();">Decrypt</div>
-	<script type="text/javascript">
-		var node = document.getElementById("file");
-		function downloadURI(uri, name){
-			var link = document.createElement("a");
-			link.download = name;
-			link.href = uri;
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
-			delete link;
-		}
-		function encryptFile(){
-			if(node.files.length > 0){
-				var file = node.files[0];
-				var reader = new FileReader();
-				reader.onload = function(){
-					var origin = reader.result.split(";base64,");
-					var data = btoa(sjcl.encrypt("P@ssw0rd", origin[1]));
-					downloadURI(origin[0] + ";base64," + data, file.name);
-				};
-				reader.readAsDataURL(file);
-			}else{
-				console.log("no file chosen");
-			}
-		}
-		function decryptFile(){
-			if(node.files.length > 0){
-				var file = node.files[0];
-				var reader = new FileReader();
-				reader.onload = function(){
-					var origin = reader.result.split(";base64,");
-					var data = sjcl.decrypt("P@ssw0rd", atob(origin[1]));
-					downloadURI(origin[0] + ";base64," + data, file.name);
-				};
-				reader.readAsDataURL(file);
-			}else{
-				console.log("no file chosen");
-			}
-		}
-	</script>
+	<div class="main">
+		<div>
+			<div id="file-notif"></div>
+			<label class="btn" for="file-choose">Choose a file</label>
+			<input type="file" id="file-choose"/>
+			<div class="btn" onclick="encryptFile();">Encrypt</div>
+			<div class="btn" onclick="decryptFile();">Decrypt</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="sjcl.js"></script>
+	<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="my.js"></script>
 </body>
 </html>
