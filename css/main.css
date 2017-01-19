@@ -20,6 +20,7 @@ textarea{
 	width: 99%;
 	resize: none;
 	overflow: auto;
+	margin-top: 20px;
 }
 
 .main{
