@@ -1,28 +1,13 @@
-body{
-	background-color: #0663bf;
-}
-.main{
-	
-	margin: 10px auto;
-	max-width: 300px;
-}
-.btn{
-	background-color: #4CAF50;
-	display: block;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    
-    font-size: 16px;
-    margin: 25px 2px;
-    cursor: pointer;	
-}
 #file-upload{
 	display: none;
 }
 #file-choose{
+	display: none;
+}
+#file-notif{
+	background-color: #edeff0;
+	color: black;
+	font-family: monospace;
 	display: none;
 }
 .custom-upload{

@@ -3,12 +3,19 @@ $(document).ready(function(){
 	filechoose = $('#file-choose');
 	filechoose.change(function(){
 		if(filechoose.length>0 && filechoose[0].files.length>0){
-			showFileName(filechoose[0].files[0]);
+			showNotif(filechoose[0].files[0].name);
 		}
 	});
 });
 function showFileName(file){
-	$('#file-notif').addClass('btn').html(file.name);
+	
+}
+function showNotif(msg){
+	$('#file-notif').html('').hide();
+	$('#file-notif').html(msg).show(300);
+}
+function hideNotif(){
+	$('#file-notif').html('').hide(300);	
 }
 var node = document.getElementById("file");
 
