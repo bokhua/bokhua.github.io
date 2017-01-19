@@ -19,6 +19,7 @@ a:hover{
 textarea{
 	width: 99%;
 	resize: none;
+	overflow: auto;
 }
 
 .main{
