@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Secure File</title>
+	<link rel="stylesheet" type="text/css" href="my.css">
+	<link rel="stylesheet" type="text/css" href="../../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css">
+	<script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<div class="header">
+		<a class="btn-nav" href="../../">HOME</a>
+		<a class="btn-nav" href="../">TOOLS</a>
+	</div>
+
+	<div class="main">
+		<h1 class="info">File Decrypt/Encrypt</h1>
+
+		<div class="btn" id="file-notif"></div>
+		
+		<label class="btn" for="file-choose">Choose a file</label>
+		
+		<input type="file" id="file-choose"/>
+
+		
+		<p class="btn" onclick="decryptFile();">Decrypt</p>
+		<p class="btn" onclick="encryptFile();">Encrypt</p>
+
+		<div class="info">
+			<ul>
+				<li>Choose a file from local disk.</li>
+				<li>Click Decrypt button to decrypt selected file.</li>
+				<li>Click Encrypt button to encrypt selected file.</li>
+				<li>If you'd like to have the URL Decoder/Encoder for offline use, just view source and save to your hard drive.</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../js/sjcl.js"></script>
+	<script type="text/javascript" src="my.js"></script>
+</body>
+</html>

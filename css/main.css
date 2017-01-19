@@ -16,6 +16,11 @@ a{
 a:hover{
 	background-color: #84bcf3;
 } 
+textarea{
+	width: 99%;
+	resize: none;
+}
+
 .main{
 	margin: 10px auto;
 	width: 95%;
@@ -48,4 +53,10 @@ a:hover{
 	background-color: #f5f5f5;
 	padding: 10px;
 	text-align: center;
+}
+ul{
+	text-align: left !important;
+}
+li{
+	padding: 5px;
 }
