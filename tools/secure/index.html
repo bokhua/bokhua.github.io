@@ -24,8 +24,11 @@
 <label class="btn" for="file-choose">Choose a file</label>
 
 <input type="file" id="file-choose"/>
-
-
+<div class="info left" id="file-password">
+	<p>Password: <input type="password" id="password"/></p>
+	<p>Show password: <input type="checkbox" id="password-mask"/></p>
+	<p id="password-err"></p>
+</div>
 <p class="btn" onclick="decryptFile();">Decrypt</p>
 <p class="btn" onclick="encryptFile();">Encrypt</p>
 

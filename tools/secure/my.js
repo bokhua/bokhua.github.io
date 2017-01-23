@@ -1,15 +1,22 @@
-var filechoose = null;
 $(document).ready(function(){
-	filechoose = $('#file-choose');
+	var filechoose = $('#file-choose');
 	filechoose.change(function(){
 		if(filechoose.length>0 && filechoose[0].files.length>0){
 			showNotif(filechoose[0].files[0].name);
+			$('#file-password').show(300);
+		}
+	});
+
+	var mask = $('#password-mask');
+	mask.on('click', function(){
+		if(mask[0].checked == true){
+			$('#password').attr('type', 'text');
+		}else{
+			$('#password').attr('type', 'password');
 		}
 	});
 });
-function showFileName(file){
-	
-}
+
 function showNotif(msg){
 	$('#file-notif').html('').hide();
 	$('#file-notif').html(msg).show(300);
@@ -17,7 +24,6 @@ function showNotif(msg){
 function hideNotif(){
 	$('#file-notif').html('').hide(300);	
 }
-var node = document.getElementById("file");
 
 function downloadURI(uri, name){
 	var link = document.createElement("a");
@@ -29,12 +35,15 @@ function downloadURI(uri, name){
 	delete link;
 }
 function encryptFile(){
-	if(node.files.length > 0){
-		var file = node.files[0];
+	var filechoose = $('#file-choose')[0];
+	var password = $('#password').val();
+	if(filechoose.files && filechoose.files.length > 0 && password){
+		var file = filechoose.files[0];
 		var reader = new FileReader();
 		reader.onload = function(){
 			var origin = reader.result.split(";base64,");
-			var data = btoa(sjcl.encrypt("P@ssw0rd", origin[1]));
+			var data = btoa(btoa(sjcl.encrypt(password, origin[1])));
+			console.log(origin[0] + ";base64," + data);
 			downloadURI(origin[0] + ";base64," + data, file.name);
 		};
 		reader.readAsDataURL(file);
@@ -43,12 +52,14 @@ function encryptFile(){
 	}
 }
 function decryptFile(){
-	if(node.files.length > 0){
-		var file = node.files[0];
+	var filechoose = $('#file-choose')[0];
+	var password = $('#password').val();
+	if(filechoose.files && filechoose.files.length > 0 && password){
+		var file = filechoose.files[0];
 		var reader = new FileReader();
 		reader.onload = function(){
 			var origin = reader.result.split(";base64,");
-			var data = sjcl.decrypt("P@ssw0rd", atob(origin[1]));
+			var data = sjcl.decrypt(password, atob(atob(origin[1])));
 			downloadURI(origin[0] + ";base64," + data, file.name);
 		};
 		reader.readAsDataURL(file);
